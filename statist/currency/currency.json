@@ -1,0 +1,49 @@
+{
+	"nation" : {
+				"url" : "https://www.index.go.kr/unity/potal/eNara/sub/showStblGams3.do?stts_cd=107201&idx_cd=1072&freq=Y&period=N",
+				"bs.type" : "html.parser",
+				"output" : {
+							"growthRate" :  {  "type" : "list",
+											"pattern" : [	{
+																"selector" : "thead th p",
+																"name" : "NAME"
+															}, {
+																"selector" : "tbody p", 
+																"name" : "M2_INC_RATE",
+																"type" : "float"
+															}
+														]
+										},
+							"changeRate" : {"type" : "list",
+												"pattern" : [{
+																"selector" : "#t_Table_107201 thead > tr:nth-of-type(1) > th",
+																"name" : "DATE",
+																"slice" : {"start": 1 },
+																"regx" : { "pattern" : "(?P<YYYY>\\d{4})(?P<MM>\\d{2})." , "replace" : "\\g<YYYY>\\g<MM>" },
+																"type" : "int"
+															}, {
+																"selector" : "#t_Table_107201 tbody > tr:nth-of-type(8) > td", 
+																"name" : "본원통화",
+																"regx" : { "pattern" : "," , "replace" : "" },
+																"type" : "float"
+															}, {
+																"selector" : "#t_Table_107201 tbody > tr:nth-of-type(6) > td", 
+																"name" : "M1",
+																"regx" : { "pattern" : "," , "replace" : "" },
+																"type" : "float"
+															}, {
+																"selector" : "#t_Table_107201 tbody > tr:nth-of-type(4) > td", 
+																"name" : "M2",
+																"regx" : { "pattern" : "," , "replace" : "" },
+																"type" : "float"
+															}, {
+																"selector" : "#t_Table_107201 tbody > tr:nth-of-type(2) > td", 
+																"name" : "Lf",
+																"regx" : { "pattern" : "," , "replace" : "" },
+																"type" : "float"
+															}
+														]
+											}
+							}
+			}
+}
