@@ -1,26 +1,24 @@
-from django.shortcuts import render
 from statist.currency import currency 
 from statist.debt import nation 
 from statist.debt import family
 from statist.house import  house
-from django.http import JsonResponse
-from django.shortcuts import redirect
+from flask import Flask, jsonify as JsonResponse
 
-def index(request) : 
-	return render(request, 'stock/index.html')
+# def index() : 
+# 	return render(, 'stock/index.html')
 
 # Create your views here.
-# def render_statist(request):
+# def render_statist():
 #     template_data = {
 #         'day': [1,2,3],
 #         'temperature': [29,27,33]
 #     }
-#     if request.method == 'GET':
+#     if .method == 'GET':
 #         print("get...")
 
-#     return render(request, 'stock/stock.html',template_data)
+#     return render(, 'stock/stock.html',template_data)
 
-# def getStock(request) :
+# def getStock() :
 # 	s = StockProgress()
 # 	resultData = s.grumble()
 
@@ -28,36 +26,36 @@ def index(request) :
 
 # 	return JsonResponse(resultData)
 
-def getStock(request) :
+def getStock() :
 	return JsonResponse( {} )
 
-def getCurrency(request) :
+def getCurrency() :
 	resultData = currency.get()
 
 	print(resultData)
 
 	return JsonResponse({ 'result' : resultData })
 
-def getDebt(request) :
+def getDebt() :
 	resultData = nation.get()
 
 	print(resultData)
 
 	return JsonResponse({ 'result' : resultData })
 
-def getDebtFamily(request) :
+def getDebtFamily() :
 	resultData = family.get()
 
 	print(resultData)
 
 	return JsonResponse({ 'result' : resultData })
 
-def getTrade(request) :
+def getTrade() :
 	resultData = house.getTrade()
 	print(resultData)
 	return JsonResponse({ 'result' : resultData })
 
-def getCharter(request) :
+def getCharter() :
 	resultData = house.getCharter()
 	print(resultData)
 	return JsonResponse({ 'result' : resultData })
