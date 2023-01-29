@@ -1,9 +1,9 @@
 FROM python:3.11.1-slim
 
-CMD [ "mkdir", "toobuk_vued3_flask" ] 
-WORKDIR /toobuk_vued3_flask
+RUN apt-get update && apt-get install -y git
 
-COPY ./ ./
+RUN git clone https://github.com/ramoi/toobuk_vued3_flask.git
+WORKDIR /toobuk_vued3_flask
 
 RUN pip install --upgrade pip
 RUN pip install -r ./requirements.txt
